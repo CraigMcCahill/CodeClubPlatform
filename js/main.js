@@ -61,10 +61,10 @@ function create() {
   player = this.physics.add.sprite(200, 200, 'player');
   player.setBounce(0.2); // our player will bounce from items
   player.setCollideWorldBounds(true); // don't go out of the map    
-  
+
   // small fix to our player images, we resize the physics body object slightly
   player.body.setSize(player.width, player.height-8);
-  
+
   // player will collide with the level tiles 
   this.physics.add.collider(groundLayer, player);
 
@@ -132,8 +132,9 @@ function update(time, delta) {
     player.anims.play('idle', true);
   }
   // jump 
-  if (cursors.up.isDown && player.body.onFloor())
+  if ((cursors.up.isDown || cursors.space.isDown) && player.body.onFloor())
   {
     player.body.setVelocityY(-500);        
   }
+
 }
